@@ -2,6 +2,7 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { BLOGS } from "../../data/blogs";
 import Link from "next/link";
+import type { Metadata } from "next";
 
 export default function BlogDetailPage({ params }: { params: { id: string | string[] } }) {
   const idParam = params?.id;
@@ -82,4 +83,16 @@ export default function BlogDetailPage({ params }: { params: { id: string | stri
       <Footer />
     </main>
   );
+}
+
+export async function generateMetadata({ params }: { params: { id: string | string[] } }): Promise<Metadata> {
+  const idParam = params?.id;
+  const idStr = Array.isArray(idParam) ? idParam[0] : `${idParam ?? ''}`;
+  const idNum = Number.parseInt(idStr, 10);
+  const post = BLOGS.find((p) => String(p.id) === idStr || p.id === idNum) ?? null;
+  return {
+    title: post ? `${post.title} — Imran Ansari` : "Blog not found",
+    alternates: { canonical: `https://imrandev.in/blogs/${idStr}` },
+    robots: { index: !!post, follow: !!post },
+  };
 }

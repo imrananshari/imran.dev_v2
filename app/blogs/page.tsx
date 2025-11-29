@@ -1,6 +1,12 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Blogs from "../components/Blogs";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "https://imrandev.in/blogs" },
+  robots: { index: true, follow: true },
+};
 
 export default function BlogsPage() {
   return (

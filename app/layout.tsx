@@ -14,7 +14,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://imran.dev"),
+  metadataBase: new URL("https://imrandev.in"),
   title: "Imran Ansari — Frontend Developer | Next.js, React, Tailwind",
   description:
     "Frontend Developer specializing in Next.js, React, Tailwind CSS. Building fast, SEO-optimized websites and SaaS dashboards for startups and businesses.",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     description:
       "Next.js and React specialist building fast, SEO-friendly websites and apps.",
     images: "/assets/imran dubai3.jpg",
-    siteName: "imran.dev",
+    siteName: "imrandev.in",
     type: "website",
   },
   twitter: {
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "/",
+    canonical: "https://imrandev.in/",
   },
 };
 
