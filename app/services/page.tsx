@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import Contact from "../components/Contact";
 import { SERVICES } from "../Constants";
 import Services from "../components/Services";
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -62,7 +62,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
                 transition={{ duration: 0.6 }}
             >
                 <div className="w-20 h-20 bg-blue-500/10 rounded-3xl flex items-center justify-center text-blue-400 mb-8 border border-blue-500/20 shadow-lg shadow-blue-500/10">
-                    {React.cloneElement(service.icon as React.ReactElement, { size: 32 })}
+                    {service.icon}
                 </div>
                 <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-tight">
                     {service.title}
@@ -1000,24 +1000,30 @@ const VitalCard = ({ label, value, delay }: any) => (
     </motion.div>
 );
 
-const ServicesPage: React.FC = () => {
+const ServicesContent: React.FC = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const id = searchParams.get('service') ?? '';
   const service = SERVICES.find((s) => s.id === id);
+  if (!service) {
+    return (
+      <section className="py-24">
+        <div className="container mx-auto px-6 md:px-12 max-w-7xl">
+          <Services />
+        </div>
+      </section>
+    );
+  }
+  return <ServiceDetail service={service} onBack={() => router.push('/#services')} />;
+};
 
+const ServicesPage: React.FC = () => {
   return (
     <main className="bg-background min-h-screen">
       <Navbar />
-      {!service ? (
-        <section className="py-24">
-          <div className="container mx-auto px-6 md:px-12 max-w-7xl">
-            <Services />
-          </div>
-        </section>
-      ) : (
-        <ServiceDetail service={service} onBack={() => router.push('/#services')} />
-      )}
+      <Suspense fallback={<section className="py-24"><div className="container mx-auto px-6 md:px-12 max-w-7xl"><div className="text-gray-400">Loading services...</div></div></section>}>
+        <ServicesContent />
+      </Suspense>
       <Contact />
       <Footer />
     </main>
