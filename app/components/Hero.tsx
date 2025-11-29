@@ -27,7 +27,7 @@ const TEAM_AVATARS = [
 const Hero: React.FC = () => {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
   return (
-    <section className="relative min-h-screen flex items-center pt-20 pb-48 md:pb-0 overflow-hidden bg-background">
+    <section id="hero" className="relative min-h-screen flex items-center pt-20 pb-48 md:pb-0 overflow-hidden bg-background">
       {/* Background Gradient Spot */}
       <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none"></div>
 

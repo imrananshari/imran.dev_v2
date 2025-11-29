@@ -1,14 +1,18 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import Link from 'next/link';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ContactForm from '../components/ContactForms';
+import { SERVICES } from '../Constants';
 
 const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,11 +36,22 @@ const Navbar: React.FC = () => {
   }, []);
 
   const navLinks = [
-    { name: "About", href: "#about" },
-    { name: "Experience", href: "#experience" },
+    { name: "Services", href: "#services" },
     { name: "Projects", href: "#projects" },
     { name: "Skills", href: "#skills" },
+    { name: "Experience", href: "#experience" },
+    { name: "Blogs", href: "/blogs" },
+    { name: "About", href: "#about" },
   ];
+
+  const COLOR_BY_ID: Record<string, { textHover: string } > = {
+    'web-dev': { textHover: 'group-hover:text-blue-400' },
+    'mobile-app': { textHover: 'group-hover:text-indigo-400' },
+    'ui-ux': { textHover: 'group-hover:text-pink-400' },
+    'crm-backend': { textHover: 'group-hover:text-cyan-400' },
+    'ai-integration': { textHover: 'group-hover:text-purple-400' },
+    'performance': { textHover: 'group-hover:text-amber-400' },
+  };
 
   return (
     <>
@@ -60,7 +75,7 @@ const Navbar: React.FC = () => {
             backdropFilter: scrolled ? "blur(16px)" : "blur(0px)",
           }}
           transition={{ duration: 0.4, type: "spring", stiffness: 120, damping: 20 }}
-          className="pointer-events-auto flex items-center justify-center overflow-hidden border border-transparent"
+          className="pointer-events-auto flex items-center justify-center overflow-visible border border-transparent"
           style={{
              // Restrict max width only on desktop scroll
              maxWidth: (scrolled && !isMobile) ? "90%" : "100%",
@@ -78,15 +93,56 @@ const Navbar: React.FC = () => {
             {/* Logo */}
             <motion.a 
                 layout
-                href="#" 
+                href="/#hero" 
                 className="text-xl font-bold tracking-tighter hover:text-gray-300 transition-colors whitespace-nowrap z-50"
             >
               imran<span className="text-gray-400">.dev</span>
             </motion.a>
 
-            {/* Desktop Nav */}
             <motion.nav layout className="hidden md:flex items-center gap-8">
-              {navLinks.map((link) => (
+              <div 
+                className="relative"
+                onMouseEnter={() => setIsServicesOpen(true)}
+                onMouseLeave={() => setIsServicesOpen(false)}
+              >
+                <button 
+                  onClick={() => setIsServicesOpen((v) => !v)}
+                  className="text-sm font-medium text-gray-300 hover:text-white transition-colors relative group inline-flex items-center gap-1"
+                >
+                  Services <ChevronDown size={14} className={`transition-transform ${isServicesOpen ? 'rotate-180' : ''}`} />
+                  <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
+                </button>
+
+                <AnimatePresence>
+                  {isServicesOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 8 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute left-0 mt-3 w-64 rounded-2xl border border-white/10 bg-[#0d0d0d]/95 backdrop-blur-xl shadow-2xl p-2 z-50"
+                    >
+                      <div className="flex flex-col">
+                        {SERVICES.map((s) => (
+                          <Link
+                            key={s.id}
+                            href={`/services?service=${s.id}`}
+                            className="group flex items-center gap-3 px-3 py-2 rounded-xl text-gray-300 hover:bg-white/5"
+                            onClick={() => setIsServicesOpen(false)}
+                          >
+                            <span className={`w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center ${COLOR_BY_ID[s.id]?.textHover ?? ''}`}>
+                              {s.icon}
+                            </span>
+                            <span className="text-sm font-medium">{s.title}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {navLinks.filter(l => l.name !== 'Services').map((link) => (
                 <a 
                   key={link.name} 
                   href={link.href} 
@@ -131,18 +187,59 @@ const Navbar: React.FC = () => {
           >
             <nav className="flex flex-col items-center gap-6">
               {navLinks.map((link) => (
-                <a 
-                  key={link.name} 
-                  href={link.href} 
-                  className="text-2xl font-medium text-gray-200 hover:text-blue-400 transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.name}
-                </a>
+                link.name === 'Services' ? (
+                  <div key={link.name} className="w-full max-w-sm mx-auto">
+                    <button
+                      className="w-full text-2xl font-medium text-gray-200 hover:text-blue-400 transition-colors inline-flex items-center justify-between"
+                      onClick={() => setIsMobileServicesOpen((v) => !v)}
+                    >
+                      <span>Services</span>
+                      <ChevronDown size={20} className={`transition-transform ${isMobileServicesOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                    <AnimatePresence>
+                      {isMobileServicesOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -6 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -6 }}
+                          className="mt-2 grid grid-cols-1 gap-2"
+                        >
+                          {SERVICES.map((s) => (
+                            <Link
+                              key={s.id}
+                              href={`/services?service=${s.id}`}
+                              className="group flex items-center gap-3 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-gray-300"
+                              onClick={() => {
+                                setIsMobileServicesOpen(false);
+                                setIsMobileMenuOpen(false);
+                              }}
+                            >
+                              <span className={`w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center ${COLOR_BY_ID[s.id]?.textHover ?? ''}`}>{s.icon}</span>
+                              <span className="text-base">{s.title}</span>
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ) : (
+                  <a 
+                    key={link.name} 
+                    href={link.href} 
+                    className="text-2xl font-medium text-gray-200 hover:text-blue-400 transition-colors"
+                    onClick={() => {
+                      setIsMobileServicesOpen(false);
+                      setIsMobileMenuOpen(false);
+                    }}
+                  >
+                    {link.name}
+                  </a>
+                )
               ))}
               <button 
                 className="mt-4 px-8 py-3 bg-white text-black font-bold rounded-full"
                 onClick={() => {
+                    setIsMobileServicesOpen(false);
                     setIsMobileMenuOpen(false);
                     setIsContactModalOpen(true);
                 }}
@@ -154,7 +251,10 @@ const Navbar: React.FC = () => {
             {/* Close Button specific for overlay */}
             <button 
                 className="absolute top-6 right-6 text-white p-2"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => {
+                  setIsMobileServicesOpen(false);
+                  setIsMobileMenuOpen(false);
+                }}
             >
                 <X size={24} />
             </button>

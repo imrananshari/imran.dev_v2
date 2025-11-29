@@ -1,5 +1,6 @@
 import React from 'react';
-import { ExperienceItem, ProjectItem, SkillCategory } from '../app/types';
+import { ExperienceItem, ProjectItem, SkillCategory, ServiceItem } from './types';
+import { Globe, Smartphone, Palette, Database, Cpu, Rocket } from 'lucide-react';
 
 export const SOCIAL_LINKS = {
   github: "https://github.com/imrananshari",
@@ -9,6 +10,12 @@ export const SOCIAL_LINKS = {
   instagram: "https://instagram.com/imrananshari",
   youtube: "https://www.youtube.com/@imranansar-zyx"
 };
+
+
+
+
+
+
 
 export const EXPERIENCES: ExperienceItem[] = [
   {
@@ -122,6 +129,84 @@ export const PROJECTS: ProjectItem[] = [
     githubLink: "https://github.com/imranansari/ecommerce-platform",
   },
 ];
+
+export const BLOGS = [
+  {
+    id: 1,
+    title: "The Future of Frontend: What to Expect in 2025",
+    excerpt: "Exploring the rise of AI-driven development, Server Components, and the next generation of build tools that will define the web.",
+    content: "AI-driven tooling is redefining frontend workflows. From code generation to intelligent refactoring, developers spend more time on product thinking than boilerplate.\n\nServer Components continue to shift rendering back to the server, simplifying data fetching and reducing client bundle sizes. Expect hybrid apps that mix SSR, RSC, and selective client islands.\n\nBuild tools are converging on DX-first designs: instant HMR, stable source maps, and granular code-splitting by default.",
+    date: "Oct 24, 2024",
+    readTime: "5 min read",
+    category: "Technology",
+    author: "Imran Ansari",
+    image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=800&auto=format&fit=crop",
+    tags: ["React", "AI", "Web"],
+  },
+  {
+    id: 2,
+    title: "Building Scalable HRMS Systems with Next.js",
+    excerpt: "A deep dive into the architecture behind high-performance enterprise applications, focusing on database design and real-time updates.",
+    content: "Scalability starts with a clear domain model. Separate identity, payroll, attendance, and reporting into bounded contexts.\n\nUse event-driven updates and WebSockets for real-time dashboards. Favor incremental static regeneration for high-traffic read views, and server actions for secure mutations.\n\nObservability (logs, traces, metrics) must be first-class to keep the system reliable.",
+    date: "Oct 10, 2024",
+    readTime: "8 min read",
+    category: "Engineering",
+    author: "Imran Ansari",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
+    tags: ["SaaS", "Architecture", "Next.js"],
+  },
+  {
+    id: 3,
+    title: "Mastering Framer Motion for React",
+    excerpt: "Learn how to create fluid, complex animations that enhance user experience without sacrificing performance.",
+    content: "Start with layout-aware motion to avoid jank during reflow. Use variants to orchestrate complex sequences across components.\n\nPrefer transform animations over layout changes for GPU acceleration.\n\nMeasure and cap animation duration; microinteractions should feel crisp, not slow.",
+    date: "Sep 28, 2024",
+    readTime: "6 min read",
+    category: "Design",
+    author: "Imran Ansari",
+    image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800&auto=format&fit=crop",
+    tags: ["Animation", "UI/UX", "React"],
+  },
+  {
+    id: 4,
+    title: "Optimizing Web Performance: A Practical Guide",
+    excerpt: "Practical strategies to improve Core Web Vitals, reduce LCP, and ensure your site ranks high on Google.",
+    content: "Optimize LCP by preloading hero images and using responsive formats (AVIF/WebP).\n\nReduce TBT with code-splitting and deferring non-critical work.\n\nShip fewer bytes: compress images, purge CSS, and cache aggressively at the edge.",
+    date: "Sep 15, 2024",
+    readTime: "7 min read",
+    category: "Performance",
+    author: "Imran Ansari",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
+    tags: ["SEO", "Speed", "Optimization"],
+  },
+  {
+    id: 5,
+    title: "The Role of AI in Modern UI Design",
+    excerpt: "How generative AI tools are changing the way we prototype, design, and iterate on user interfaces.",
+    content: "AI accelerates ideation—generate variants, compare heuristics, and quickly converge.\n\nUse AI for accessibility audits and content tone checks.\n\nDesigners remain in control; AI is a multiplier, not a replacement.",
+    date: "Aug 30, 2024",
+    readTime: "4 min read",
+    category: "Design",
+    author: "Imran Ansari",
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=800&auto=format&fit=crop",
+    tags: ["AI", "Design", "Future"],
+  },
+  {
+    id: 6,
+    title: "Effective State Management in 2024",
+    excerpt: "Comparing Redux Toolkit, Zustand, and React Context to help you choose the right tool for your next project.",
+    content: "RTK excels at large teams and predictable workflows. Zustand is ideal for local, ergonomic stores without boilerplate. Context is best for stable, small-scale global values.\n\nPick based on scale, team, and performance constraints—avoid over-engineering.",
+    date: "Aug 12, 2024",
+    readTime: "10 min read",
+    category: "Engineering",
+    author: "Imran Ansari",
+    image: "https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=800&auto=format&fit=crop",
+    tags: ["State", "React", "JavaScript"],
+  },
+];
+
+
+
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
@@ -245,4 +330,139 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     ),
     tags: ["Git", "GitHub", "Vite", "Figma", "Vercel"]
   }
+];
+
+export const SERVICES: ServiceItem[] = [
+  {
+    id: "web-dev",
+    title: "Enterprise Web Development",
+    description: "High-performance, scalable web applications built with Next.js and React for modern businesses.",
+    longDescription:
+      "I engineer robust, scalable, and high-performance web solutions tailored to enterprise needs. By leveraging Next.js and modern React patterns, I deliver pixel-perfect interfaces backed by secure, optimized infrastructure. Whether you need a complex SaaS platform, a dynamic marketing site, or an internal dashboard, I ensure your web presence is fast, accessible, and future-proof.",
+    icon: <Globe size={24} />,
+    features: [
+      "Custom SaaS Platform Architecture",
+      "Progressive Web Apps (PWA)",
+      "Headless CMS Integration",
+      "SSR & Static Generation for SEO",
+      "Real-time Data Synchronization",
+      "Secure Payment Gateway Integration",
+    ],
+    benefits: [
+      "99.9% Uptime Architecture",
+      "Lightning Fast Page Loads (<1s)",
+      "SEO-First Development",
+      "Bank-Grade Security Standards",
+    ],
+  },
+  {
+    id: "mobile-app",
+    title: "Cross-Platform Mobile Apps",
+    description: "Native-quality iOS and Android applications using Flutter for rapid deployment and seamless UX.",
+    longDescription:
+      "Reach your customers on every device with a unified code base. Using Flutter, I build stunning, natively compiled applications for mobile, web, and desktop from a single codebase. This approach reduces development time by 40% without compromising on performance or user experience.",
+    icon: <Smartphone size={24} />,
+    features: [
+      "iOS & Android Deployment",
+      "Native Performance Compilation",
+      "Hardware Integration (Camera, GPS, Biometrics)",
+      "Offline-First Architecture",
+      "Automated Push Notifications",
+      "App Store & Play Store Optimization",
+    ],
+    benefits: [
+      "Single Codebase efficiency",
+      "Native 60fps Performance",
+      "Rapid Prototyping & MVP",
+      "Seamless Cloud Sync",
+    ],
+  },
+  {
+    id: "ui-ux",
+    title: "Product Design (UI/UX)",
+    description: "User-centric design systems and interactive prototypes that drive engagement and retention.",
+    longDescription:
+      "Great software starts with empathy. I design intuitive, accessible, and aesthetically pleasing interfaces that solve real user problems. From wireframing complex workflows to crafting high-fidelity design systems, I ensure your product is not just usable, but delightful.",
+    icon: <Palette size={24} />,
+    features: [
+      "User Journey Mapping",
+      "High-Fidelity Prototyping in Figma",
+      "Design System Creation",
+      "Accessibility (WCAG) Compliance",
+      "Micro-interaction Design",
+      "Usability Testing & Research",
+    ],
+    benefits: [
+      "Higher User Retention",
+      "Reduced Development Friction",
+      "Brand Consistency",
+      "Accessible to All Users",
+    ],
+  },
+  {
+    id: "crm-backend",
+    title: "Backend & CRM Solutions",
+    description: "Scalable APIs, database architecture, and custom CRM systems to streamline operations.",
+    longDescription:
+      "Power your business with a robust backend. I architect secure, scalable APIs and manage complex database relationships to support your business logic. Additionally, I build custom CRM and ERP solutions that automate workflows and provide actionable insights.",
+    icon: <Database size={24} />,
+    features: [
+      "RESTful & GraphQL API Development",
+      "Microservices Architecture",
+      "Database Design (SQL/NoSQL)",
+      "Authentication (OAuth, JWT)",
+      "Third-party API Integrations (Stripe, Twilio)",
+      "Automated Cron Jobs & Workflows",
+    ],
+    benefits: [
+      "Secure Data Handling",
+      "Infinite Scalability",
+      "Automated Business Logic",
+      "Real-time Analytics",
+    ],
+  },
+  {
+    id: "ai-integration",
+    title: "AI & LLM Integration",
+    description: "Infusing applications with Artificial Intelligence for smart automation and predictive insights.",
+    longDescription:
+      "Stay ahead of the curve by integrating AI into your workflow. I implement Large Language Models (LLMs) like GPT-4 and Claude to build smart chatbots, content generators, and data analysis tools that transform how your users interact with your software.",
+    icon: <Cpu size={24} />,
+    features: [
+      "Custom Chatbot Development",
+      "Semantic Search & Embeddings",
+      "Automated Content Generation",
+      "Predictive Analytics Models",
+      "Voice-to-Text Integration",
+      "AI Agent Workflows",
+    ],
+    benefits: [
+      "24/7 Automated Support",
+      "Personalized User Experiences",
+      "Data-Driven Decisions",
+      "Operational Efficiency",
+    ],
+  },
+  {
+    id: "performance",
+    title: "Performance Optimization",
+    description: "Auditing and refining applications for maximum speed, SEO ranking, and accessibility scores.",
+    longDescription:
+      "Speed is a feature. I conduct comprehensive audits of your web infrastructure to identify bottlenecks. By optimizing assets, code splitting, and server configurations, I help you achieve perfect Lighthouse scores, improving both SEO rankings and user conversion rates.",
+    icon: <Rocket size={24} />,
+    features: [
+      "Core Web Vitals Optimization",
+      "Server Response Time Reduction",
+      "Advanced Caching Strategies",
+      "Image & Asset Compression",
+      "Technical SEO Audits",
+      "Bundle Size Reduction",
+    ],
+    benefits: [
+      "Higher Google Rankings",
+      "Lower Bounce Rates",
+      "Improved Mobile Experience",
+      "Reduced Hosting Costs",
+    ],
+  },
 ];

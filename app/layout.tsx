@@ -126,12 +126,13 @@ export default function RootLayout({
             {
               "@context": "https://schema.org",
               "@type": "SiteNavigationElement",
-              "name": ["About", "Experience", "Projects", "Skills", "Contact"],
+              "name": ["About", "Experience", "Projects", "Skills", "Services", "Contact"],
               "url": [
                 "https://imran.dev/#about",
                 "https://imran.dev/#experience",
                 "https://imran.dev/#projects",
                 "https://imran.dev/#skills",
+                "https://imran.dev/#services",
                 "https://imran.dev/#contact"
               ]
             }

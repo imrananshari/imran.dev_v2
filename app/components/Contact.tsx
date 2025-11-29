@@ -23,7 +23,7 @@ const Contact: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-bold tracking-tight mb-4 leading-tight text-center whitespace-nowrap"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4 leading-tight text-center break-words"
         >
           Let's create something <span className="text-gray-500">meaningful</span> together.
         </motion.h2>

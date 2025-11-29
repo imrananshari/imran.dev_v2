@@ -26,3 +26,13 @@ export interface SkillCategory {
   codeSnippet: ReactNode;
   tags: string[];
 }
+
+export interface ServiceItem {
+  id: string;
+  title: string;
+  description: string;
+  longDescription: string;
+  icon: ReactNode;
+  features: string[];
+  benefits: string[];
+}
