@@ -19,6 +19,26 @@ export default function BlogDetailPage({ params }: { params: { id: string | stri
       <Navbar />
       <section className="py-24">
         <div className="container mx-auto px-6 md:px-12 max-w-4xl">
+          {post && (
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                  "@context": "https://schema.org",
+                  "@type": "Article",
+                  "headline": post.title,
+                  "author": { "@type": "Person", "name": post.author },
+                  "datePublished": post.date,
+                  "dateModified": post.date,
+                  "image": post.image,
+                  "mainEntityOfPage": {
+                    "@type": "WebPage",
+                    "@id": `https://imrandev.in/blogs/${post.id}`
+                  }
+                })
+              }}
+            />
+          )}
           {!post ? (
             <div className="text-center text-gray-400">
               <h1 className="text-2xl font-bold text-white mb-2">Blog not found</h1>
