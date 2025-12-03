@@ -96,7 +96,8 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               "name": "Imran Ansari",
-              "url": "https://imran.dev",
+              "url": "https://imrandev.in",
+              "image": "https://imrandev.in/assets/imran%20dubai3.jpg",
               "sameAs": [
                 "https://github.com/imrananshari",
                 "https://linkedin.com/in/imrann-ansari",
@@ -111,11 +112,19 @@ export default function RootLayout({
             {
               "@context": "https://schema.org",
               "@type": "WebSite",
-              "name": "imran.dev",
-              "url": "https://imran.dev",
+              "name": "imrandev.in",
+              "url": "https://imrandev.in",
+              "publisher": {
+                "@type": "Organization",
+                "name": "Imran Ansari",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://imrandev.in/assets/imran%20dubai3.jpg"
+                }
+              },
               "potentialAction": {
                 "@type": "SearchAction",
-                "target": "https://imran.dev/?q={search_term_string}",
+                "target": "https://imrandev.in/?q={search_term_string}",
                 "query-input": "required name=search_term_string"
               }
             }
@@ -164,3 +173,23 @@ export default function RootLayout({
     </html>
   );
 }
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Imran Ansari",
+              "url": "https://imrandev.in",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://imrandev.in/assets/imran%20dubai3.jpg"
+              },
+              "sameAs": [
+                "https://github.com/imrananshari",
+                "https://linkedin.com/in/imrann-ansari",
+                "https://instagram.com/imrananshari",
+                "https://www.youtube.com/@imranansar-zyx"
+              ]
+            }
+          `}
+        </script>

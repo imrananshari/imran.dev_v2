@@ -36,12 +36,12 @@ const Navbar: React.FC = () => {
   }, []);
 
   const navLinks = [
-    { name: "Services", href: "#services" },
-    { name: "Projects", href: "#projects" },
-    { name: "Skills", href: "#skills" },
-    { name: "Experience", href: "#experience" },
+    { name: "Services", href: "/services" },
+    { name: "Projects", href: "/#projects" },
+    { name: "Skills", href: "/#skills" },
+    { name: "Experience", href: "/#experience" },
     { name: "Blogs", href: "/blogs" },
-    { name: "About", href: "#about" },
+    { name: "About", href: "/#about" },
   ];
 
   const COLOR_BY_ID: Record<string, { textHover: string } > = {

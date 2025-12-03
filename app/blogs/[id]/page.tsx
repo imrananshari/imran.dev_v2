@@ -4,9 +4,8 @@ import { BLOGS } from "../../data/blogs";
 import Link from "next/link";
 import type { Metadata } from "next";
 
-export default function BlogDetailPage({ params }: { params: { id: string | string[] } }) {
-  const idParam = params?.id;
-  const idStr = Array.isArray(idParam) ? idParam[0] : `${idParam ?? ''}`;
+export default function BlogDetailPage({ params }: { params: { id: string } }) {
+  const idStr = `${params.id}`;
   const idNum = Number.parseInt(idStr, 10);
   const post = BLOGS.find((p) => String(p.id) === idStr || p.id === idNum) ?? null;
   const index = post ? BLOGS.findIndex((p) => p.id === post.id) : -1;
@@ -31,6 +30,14 @@ export default function BlogDetailPage({ params }: { params: { id: string | stri
                   "datePublished": post.date,
                   "dateModified": post.date,
                   "image": post.image,
+                  "publisher": {
+                    "@type": "Organization",
+                    "name": "Imran Ansari",
+                    "logo": {
+                      "@type": "ImageObject",
+                      "url": "https://imrandev.in/assets/imran%20dubai3.jpg"
+                    }
+                  },
                   "mainEntityOfPage": {
                     "@type": "WebPage",
                     "@id": `https://imrandev.in/blogs/${post.id}`
@@ -105,9 +112,8 @@ export default function BlogDetailPage({ params }: { params: { id: string | stri
   );
 }
 
-export async function generateMetadata({ params }: { params: { id: string | string[] } }): Promise<Metadata> {
-  const idParam = params?.id;
-  const idStr = Array.isArray(idParam) ? idParam[0] : `${idParam ?? ''}`;
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+  const idStr = `${params.id}`;
   const idNum = Number.parseInt(idStr, 10);
   const post = BLOGS.find((p) => String(p.id) === idStr || p.id === idNum) ?? null;
   return {
@@ -115,4 +121,8 @@ export async function generateMetadata({ params }: { params: { id: string | stri
     alternates: { canonical: `https://imrandev.in/blogs/${idStr}` },
     robots: { index: !!post, follow: !!post },
   };
+}
+
+export async function generateStaticParams() {
+  return BLOGS.map((b) => ({ id: String(b.id) }));
 }
