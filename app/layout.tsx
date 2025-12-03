@@ -135,14 +135,15 @@ export default function RootLayout({
             {
               "@context": "https://schema.org",
               "@type": "SiteNavigationElement",
-              "name": ["About", "Experience", "Projects", "Skills", "Services", "Contact"],
+              "name": ["About", "Experience", "Projects", "Skills", "Services", "Blogs", "Contact"],
               "url": [
-                "https://imran.dev/#about",
-                "https://imran.dev/#experience",
-                "https://imran.dev/#projects",
-                "https://imran.dev/#skills",
-                "https://imran.dev/#services",
-                "https://imran.dev/#contact"
+                "https://imrandev.in/#about",
+                "https://imrandev.in/#experience",
+                "https://imrandev.in/#projects",
+                "https://imrandev.in/#skills",
+                "https://imrandev.in/services",
+                "https://imrandev.in/blogs",
+                "https://imrandev.in/#contact"
               ]
             }
           `}
