@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import FaviconSetter from "./components/FaviconSetter";
 import { Analytics } from "@vercel/analytics/next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -172,6 +173,8 @@ export default function RootLayout({
         <FaviconSetter />
         {children}
         <Analytics />
+          <Analytics />
+  <GoogleAnalytics gaId="G-MVYZ0N240R" />
       </body>
     </html>
   );
